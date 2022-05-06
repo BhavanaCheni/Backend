@@ -1,0 +1,41 @@
+{"petdogs": [{
+  "id":1,
+  "Dog Breed": "Golden Retrievers",
+  "Behaviour": "Trustworthy",
+  "Description": "Playful, gentle with children",
+  "Breed Cost": 1500,
+  "Breed Lifetime": "10-12 years" 
+
+},
+{
+  "id":2,
+  "Dog Breed": "Labrador Retrievers",
+  "Behaviour": "Intelligent",
+  "Description": "Eager to please and willing to work hard",
+  "Breed Cost": 1000,
+  "Breed Lifetime": "10-12 years" 
+},
+{
+  "id":3,
+  "Dog Breed": "Beagles",
+  "Behaviour": "Excitable",
+  "Description": "Excellent for hunting rabbits and hares",
+  "Breed Cost": 800,
+  "Breed Lifetime": "12-15 years" 
+},
+{
+  "id":4,
+  "Dog Breed": "Irish Setter",
+  "Behaviour": "Affectionate",
+  "Description": "Sweet and outgoing",
+  "Breed Cost": 1000,
+  "Breed Lifetime": "12-15 years" 
+},
+{
+  "id":5,
+  "Dog Breed": "Pomeranian",
+  "Behaviour": "Playful",
+  "Description": "Highly intelligent and energetic",
+  "Breed Cost": 1800,
+  "Breed Lifetime": "12-16 years" 
+}]}
