@@ -1,4 +1,4 @@
-{"petdogs": [{
+[{
   "id":1,
   "Dog Breed": "Golden Retrievers",
   "Behaviour": "Trustworthy",
@@ -38,4 +38,4 @@
   "Description": "Highly intelligent and energetic",
   "Breed Cost": 1800,
   "Breed Lifetime": "12-16 years" 
-}]}
+}]
