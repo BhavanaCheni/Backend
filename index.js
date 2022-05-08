@@ -1,74 +1,87 @@
-const http = require("http");
-const path = require("path");
-const fs = require("fs");
+const http = require('http');
+const path = require('path');
+const fs= require("fs");
 
-const server = http.createServer((req, res) => {
-    
-    /*
+const server = http.createServer((req, res)=>{
 
+    console.log("Request URL : ", req.url)
+
+    let filePath= path.join(__dirname, 'public', req.url==='/' ? 'index6.html':req.url );
+
+    console.log(filePath)
+
+    let extname = path.extname(filePath)
+    console.log("Ext: ", extname)
+
+    // based on extention .json Cotnent-Type = application/json
+    // html , css, javascript, json
+    switch(extname){
+        case '.css':
+            contentType= 'text/css';
+            break;
+        case '.vue':
+            contentType= 'text/vue';
+            break;
+        case '.js':
+            contentType= 'text/javascript';
+            break;
+        case '.json':
+            contentType= 'application/json';
+            break;
+        case '.html':
+                contentType= 'text/html';
+                break
         
+    }
+    console.log(contentType)
 
-        we can Navigate to different pages via different requests. 
-        if / then goto index.html
-        if /about about then goto about.html
-        if /api then laod the JSON file  /  ;) this might be something you need for your exam. 
+    // readthe file
+    fs.readFile(filePath, (err, content)=>{
+            // err.code
+            if(err) {
+
+                        if(err.code = 'ENONET'){ // file dont exist 
+                            // display the 404 page here
+                            fs.readFile(path.join(__dirname,'public','404.html'),(err,content)=>{ 
+                                res.writeHead(200, {"Content-Type": 'text/html'});
+                                res.end(content, 'utf-8')
+
+                            });
+                                    
+                        }
+                        else{
+                            res.writeHead(500);
+                            res.end(`server error ${err.code}` );
+                        }
+    
+
+            }else{
+                //sucess
+                res.setHeader("Access-Control-Allow-Origin", "*") 
+                res.writeHead(200, {'Content-Type':contentType})
+                res.end(content, 'utf-8')
 
 
 
-    */
+            }
+
+
+
+    });
+
+
+    
    
-    
-    
-    if (req.url === '/') {
-        // read public.html file from public folder
-        fs.readFile(path.join(__dirname, 'public', 'index.html'),
-                    (err, content) => {
-                                    
-                                    if (err) throw err;
-                                    res.writeHead(200, { 'Content-Type': 'text/html' });
-                                    res.end(content);
-                        }
-              );
-     }
-
-    else if (req.url === '/about') {
 
 
-        // read the about.html file public folder
-        fs.readFile(
-            path.join(__dirname, 'public', 'about.html'),
-                    (err, content) => {
-                                    
-                                    if (err) throw err;
-                                    res.writeHead(200, { 'Content-Type': 'text/html' });
-                                    res.end(content);
-                        }
-              );
-     }
-    else if (req.url==='/api')
-    {
-        fs.readFile(
-            path.join(__dirname, 'public', 'db.json'),'utf-8',
-                    (err, content) => {
-                                    
-                                    if (err) throw err;
-                                    // Please note the content-type here is application/json
-                                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                                    res.end(content);
-                        }
-              );
-    }
-    else{
-        res.end("<h1> 404 nothing is here</h1>");
-    }
 
-    /*
 
-        But what if we have  1000 pages/urls ? do we need to write 1000 if-else statements?
 
-    /*/
 });
 
-const PORT= process.env.PORT || 5762;
 
-server.listen(PORT,()=> console.log(`Great our server is running on port ${PORT} `));
+
+const PORT = process.env.PORT || 5464;
+server.listen(PORT,()=> console.log(`Great our server is working ${PORT}`)) 
+
+// nodemonå
